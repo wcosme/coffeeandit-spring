@@ -8,6 +8,8 @@ import java.util.UUID;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.redis.core.RedisHash;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -22,11 +24,13 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(of = "uuid")
+@RedisHash(value = "TransactionDto", timeToLive = 300)
 public class TransactionDto implements Serializable {
 	
 	private static final long serialVersionUID = 8046485259673242587L;
 
 	@Schema(description = "Identificador único da transação")
+	@Id
 	private UUID uuid;
 
 	@Schema(description = "Valor da transação")
@@ -41,7 +45,7 @@ public class TransactionDto implements Serializable {
     @NotNull(message = "Informar a conta de origem da transação")
     @Schema(description = "Conta de origem da transação")
     @Valid
-    private ContaDto conta;
+    private Conta conta;
     
     @Schema(description = "Beneficiário da transação")
     @Valid
@@ -53,8 +57,5 @@ public class TransactionDto implements Serializable {
     
     @Schema(description = "Situação da transação")
     private SituacaoEnum situacao;
-
-
-    
 
 }
