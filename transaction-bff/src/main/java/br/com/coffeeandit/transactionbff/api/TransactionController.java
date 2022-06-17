@@ -66,9 +66,9 @@ public class TransactionController {
             @ApiResponse(responseCode = "404", description = "Recurso não encontrado")})
     @Parameters(value = {@Parameter(name = "id", in = ParameterIn.PATH)})
 	@GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public Mono<TransactionDto> getTransaction(@PathVariable("id") final UUID uuid){
+	public Mono<TransactionDto> getOneTransaction(@PathVariable("id") final UUID id){
 		
-		Optional<TransactionDto> optional = transactionService.findById(uuid);
+		Optional<TransactionDto> optional = transactionService.findById(id);
 		if(optional.isPresent()) {
 			return Mono.just(optional.get());
 		}

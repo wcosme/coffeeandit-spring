@@ -23,7 +23,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@EqualsAndHashCode(of = "uuid")
+@EqualsAndHashCode(of = "id")
 @RedisHash(value = "TransactionDto", timeToLive = 300)
 public class TransactionDto implements Serializable {
 	
@@ -31,7 +31,7 @@ public class TransactionDto implements Serializable {
 
 	@Schema(description = "Identificador único da transação")
 	@Id
-	private UUID uuid;
+	private UUID id;
 
 	@Schema(description = "Valor da transação")
     @NotNull(message = "Informar o valor da transação")
