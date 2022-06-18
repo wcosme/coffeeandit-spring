@@ -1,4 +1,4 @@
-package br.com.coffeeandit.limitessvc;
+package br.com.coffeeandit;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
