@@ -9,5 +9,5 @@ spring:
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
-  packagesToScan: br.com.coffeeandit.transactionbff.api
+  packagesToScan: br.com.coffeeandit.transactionbff.controllers
 

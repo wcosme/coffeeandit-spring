@@ -1,8 +1,8 @@
-package br.com.coffeeandit.transactionbff.api;
+package br.com.coffeeandit.transactionbff.controllers;
 
 import java.util.Optional;
-import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -36,7 +36,7 @@ public class TransactionController {
 	private TransactionService transactionService;
 	
 	
-	
+	@Autowired
 	public TransactionController(TransactionService transactionService) {		
 		this.transactionService = transactionService;
 	}
@@ -49,14 +49,14 @@ public class TransactionController {
             @ApiResponse(responseCode = "404", description = "Recurso não encontrado")
     })
 	@PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public Mono<TransactionDto> sendTransaction(@RequestBody RequestTransactionDto request){
+	public Mono<TransactionDto> sendTransaction(@RequestBody RequestTransactionDto requestTransactionDto){
 		
-		Optional<TransactionDto> optional = transactionService.save(request);
-		if(optional.isPresent()) {
-			return Mono.just(optional.get());
-		}
-		
-		throw new ResponseStatusException(HttpStatus.NOT_FOUND);	
+		final Optional<TransactionDto> transactionDto = transactionService.save(requestTransactionDto);
+        if (transactionDto.isPresent()) {
+            return Mono.just(transactionDto.get());
+        }
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
+	
 	}
 	
 	@Operation(description = "API para buscar os transações por id")
@@ -65,10 +65,10 @@ public class TransactionController {
             @ApiResponse(responseCode = "403", description = "Erro de autorização dessa API"),
             @ApiResponse(responseCode = "404", description = "Recurso não encontrado")})
     @Parameters(value = {@Parameter(name = "id", in = ParameterIn.PATH)})
-	@GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public Mono<TransactionDto> getOneTransaction(@PathVariable("id") final UUID id){
+	@GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public Mono<TransactionDto> getOneTransaction(@PathVariable("id") final String uuid){
 		
-		Optional<TransactionDto> optional = transactionService.findById(id);
+		Optional<TransactionDto> optional = transactionService.findById(uuid);
 		if(optional.isPresent()) {
 			return Mono.just(optional.get());
 		}
