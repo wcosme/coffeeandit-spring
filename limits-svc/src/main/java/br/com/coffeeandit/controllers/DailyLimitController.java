@@ -36,5 +36,16 @@ public class DailyLimitController {
 	}
 	
 	
+	@GetMapping(value = "/{agency}/{account}")
+	public ResponseEntity<DailyLimit> findDailyLimit(@PathVariable("agency") Long agency, @PathVariable("account") Long account){
+		//account = (long) 88220;
+		Optional<DailyLimit> dailyLimit = limitService.findDailyLimit(agency, account);
+		
+		if(dailyLimit.isPresent()) {
+			return ResponseEntity.ok().body(dailyLimit.get());
+		}
+		
+		throw new ResponseStatusException(HttpStatus.NOT_FOUND, "resource not found.");
+	}
 
 }

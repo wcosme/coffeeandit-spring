@@ -10,4 +10,7 @@ springdoc:
   swagger-ui:
     path: /swagger-ui.html
   packagesToScan: br.com.coffeeandit.transactionbff.controllers
+  
+limits:
+  url: http://localhost:8081
 

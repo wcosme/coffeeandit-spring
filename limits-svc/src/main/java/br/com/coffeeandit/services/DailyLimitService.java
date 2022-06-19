@@ -22,17 +22,18 @@ public class DailyLimitService {
         return dailyLimitRepository.findById(id);
     }
 	
-	public Optional<DailyLimit> insertDailyLimit(Long agency, Long account){
+	public Optional<DailyLimit> findDailyLimit(Long agency, Long account){
 		Optional<DailyLimit> dailyLimit = dailyLimitRepository.findByAgencyAndAccount(agency, account);
 		
 		if(dailyLimit.isEmpty()) {
 			var limit = new DailyLimit();
 			BeanUtils.copyProperties(dailyLimit, limit);
 			limit.setDailyLimits(new BigDecimal(2000));
+			
+			return Optional.of(dailyLimitRepository.save(limit));
 		}
 		
 		return dailyLimit;
 	}
-
 
 }
