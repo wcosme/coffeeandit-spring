@@ -1,1 +1,1 @@
-INSERT INTO daily_limit (agency, account, data, withdraw) VALUES (223, 88220, now(), 20000);
+INSERT INTO daily_limit (agency, account, data, dailyLimits) VALUES (223, 88220, now(), 2000);

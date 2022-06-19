@@ -25,6 +25,6 @@ public class DailyLimit implements Serializable{
 	private Long id;
 	private Long account;
 	private Long agency;
-	private BigDecimal withdraw;
+	private BigDecimal dailyLimits;
 
 }
