@@ -3,6 +3,6 @@ CREATE TABLE daily_limit (
    agency INT NOT NULL,
    account INT NOT NULL,
    data DATE NOT NULL,
-   dailyLimits DECIMAL(8,2),
+   daily_limits DECIMAL(8,2),
    PRIMARY KEY (id)
 );

@@ -2,6 +2,7 @@ package br.com.coffeeandit.transactionbff.dto;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -16,5 +17,6 @@ public class DailyLimit implements Serializable{
 	private Long account;
 	private Long agency;
 	private BigDecimal dailyLimits;
+	private LocalDateTime data;
 
 }

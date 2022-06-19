@@ -48,6 +48,7 @@ public class TransactionController {
             @ApiResponse(responseCode = "403", description = "Erro de autorização dessa API"),
             @ApiResponse(responseCode = "404", description = "Recurso não encontrado")
     })
+	
 	@PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public Mono<TransactionDto> sendTransaction(@RequestBody RequestTransactionDto requestTransactionDto){
 		
@@ -65,6 +66,7 @@ public class TransactionController {
             @ApiResponse(responseCode = "403", description = "Erro de autorização dessa API"),
             @ApiResponse(responseCode = "404", description = "Recurso não encontrado")})
     @Parameters(value = {@Parameter(name = "id", in = ParameterIn.PATH)})
+	
 	@GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public Mono<TransactionDto> getOneTransaction(@PathVariable("id") final String uuid){
 		
@@ -82,6 +84,7 @@ public class TransactionController {
             @ApiResponse(responseCode = "403", description = "Erro de autorização dessa API"),
             @ApiResponse(responseCode = "404", description = "Recurso não encontrado")})
     @Parameters(value = {@Parameter(name = "id", in = ParameterIn.PATH)})
+	
 	@DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public Mono<TransactionDto> deleteTransaction(@PathVariable("id") final String uuid){
 		return Mono.empty();
@@ -93,6 +96,7 @@ public class TransactionController {
             @ApiResponse(responseCode = "403", description = "Erro de autorização dessa API"),
             @ApiResponse(responseCode = "404", description = "Recurso não encontrado")})
     @Parameters(value = {@Parameter(name = "id", in = ParameterIn.PATH)})
+	
 	@PatchMapping(value = "/{id}/confirm", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public Mono<TransactionDto> confirmPartialUpdateTransaction(@PathVariable("id") final String uuid){
 		return Mono.empty();

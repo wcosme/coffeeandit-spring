@@ -2,6 +2,7 @@ package br.com.coffeeandit.domain;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,5 +27,6 @@ public class DailyLimit implements Serializable{
 	private Long account;
 	private Long agency;
 	private BigDecimal dailyLimits;
+	private LocalDateTime data;
 
 }

@@ -12,6 +12,6 @@ import br.com.coffeeandit.transactionbff.dto.DailyLimit;
 public interface LimitClient {
 
     @RequestMapping(path = "/daily-limit/{agency}/{account}", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
-    DailyLimit findDailyLimit(@PathVariable("agency") final Long agency, @PathVariable("account") final Long account);
+    DailyLimit findDailyLimit(@PathVariable("agency") Long agency, @PathVariable("account") Long account);
 
 }
