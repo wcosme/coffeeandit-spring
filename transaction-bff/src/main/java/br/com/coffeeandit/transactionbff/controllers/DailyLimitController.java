@@ -7,21 +7,22 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.coffeeandit.transactionbff.dto.DailyLimit;
 import br.com.coffeeandit.transactionbff.feign.LimitClient;
+import br.com.coffeeandit.transactionbff.services.DailyLimitService;
 
 @RestController
 @RequestMapping("/limits")
 public class DailyLimitController {
 	
-	private LimitClient limitClient;
+	private DailyLimitService dailyLimitService;
 
-    public DailyLimitController(LimitClient limitClient) {
-        this.limitClient = limitClient;
+    public DailyLimitController(DailyLimitService dailyLimitService) {
+        this.dailyLimitService = dailyLimitService;
     }
 
     @GetMapping(value = "/{agency}/{account}")
     public DailyLimit findDailyLimit(@PathVariable("agency") Long agency, @PathVariable("account") Long account) {
 
-        return limitClient.findDailyLimit(agency, account);
+        return dailyLimitService.findDailyLimit(agency, account);
 
     }
 }
