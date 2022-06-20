@@ -1,7 +1,6 @@
 package br.com.coffeeandit.services;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -28,17 +27,8 @@ public class DailyLimitService {
     }
 	
 	public Optional<DailyLimit> findDailyLimit(Long agency, Long account){
-		Optional<DailyLimit> dailyLimit = dailyLimitRepository.findByAgencyAndAccount(agency, account);
 		
-		if(!dailyLimit.isPresent()) {
-			var limit = new DailyLimit();
-			limit.setAgency(agency);
-			limit.setAccount(account);
-			limit.setData(LocalDateTime.now());
-			limit.setDailyLimits(limiteDiario);
-			
-			return Optional.of(dailyLimitRepository.save(limit));
-		}
+		Optional<DailyLimit> dailyLimit = dailyLimitRepository.findByAgencyAndAccount(agency, account);
 		
 		return dailyLimit;
 	}
