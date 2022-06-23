@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.coffeeandit.transactionbff.dto.DailyLimit;
-import br.com.coffeeandit.transactionbff.feign.LimitClient;
 import br.com.coffeeandit.transactionbff.services.DailyLimitService;
 
 @RestController
